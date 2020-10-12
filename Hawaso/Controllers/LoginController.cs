@@ -29,9 +29,11 @@ namespace Hawaso.Controllers
                     new Claim(ClaimTypes.Name, "박용준"), 
                 };
 
-                var ci = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var ci = new ClaimsIdentity(claims, 
+                    CookieAuthenticationDefaults.AuthenticationScheme);
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme
                     , new ClaimsPrincipal(ci));
 
                 return LocalRedirect(Url.Content("~/")); 

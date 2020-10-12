@@ -1,12 +1,18 @@
 ﻿<AuthorizeView>
     <Authorized>
-        <a href="Identity/Account/Manage">@context.User.Identity.Name 님, 안녕하세요.</a>
+        <a href="Identity/Account/Manage">
+            @context.User.Identity.Name 님, 안녕하세요.
+        </a>
         <form method="post" action="Identity/Account/LogOut">
-            <button type="submit" class="nav-link btn btn-link">Log out</button>
+            <button type="submit" class="nav-link btn btn-link">
+                Log out
+            </button>
         </form>
         @*<a href="/Logout">Log out Cookies</a>*@
         <form method="post" action="/Logout">
-            <button type="submit" class="nav-link btn btn-link">Log out Cookies</button>
+            <button type="submit" class="nav-link btn btn-link">
+                Log out Cookies
+            </button>
         </form>
     </Authorized>
     <NotAuthorized>
