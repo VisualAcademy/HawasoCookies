@@ -1,6 +1,7 @@
 ﻿@page "/fetchdata"
 
 @using Hawaso.Data
+
 @inject WeatherForecastService ForecastService
 
 <h1>Weather forecast</h1>
@@ -41,6 +42,16 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        var authState = await AuthenticationStateRef;
+        if (authState.User.Identity.IsAuthenticated)
+        {
+            if (authState.User.Identity.Name == "박용준")
+            {
+                forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+            }
+        }
     }
+
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationStateRef { get; set; }
 }
