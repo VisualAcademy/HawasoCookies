@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -25,7 +26,7 @@ namespace Hawaso.Controllers
                 {
                     // 로그인 아이디 지정
                     new Claim(ClaimTypes.Email, email),
-                    new Claim(ClaimTypes.Name, "Administrator"), 
+                    new Claim(ClaimTypes.Name, "박용준"), 
                 };
 
                 var ci = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -38,5 +39,8 @@ namespace Hawaso.Controllers
 
             return View();
         }
+
+        [Authorize]
+        public IActionResult UserInfor() => View(); 
     }
 }
