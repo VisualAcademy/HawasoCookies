@@ -9,3 +9,12 @@
     암호: <input type="password" id="password" name="password" /><br />
     <input type="submit" value="로그인" />
 </form>
+
+<hr />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <text>@User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value</text>
+    <text>@User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value</text>
+    <text>@User.Claims.FirstOrDefault(c => c.Type == "Job").Value</text>
+}

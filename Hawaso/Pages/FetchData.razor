@@ -37,8 +37,17 @@ else
     </table>
 }
 
+<hr />
+@if (Job != null)
+{
+    <text>현재 접속자의 이름은 @(Name)이고 직업은 @(Job)입니다.</text>
+}
+
 @code {
     private WeatherForecast[] forecasts;
+
+    public string Job { get; set; }
+    public string Name { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -49,6 +58,10 @@ else
             {
                 forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
             }
+
+            //[2] Claims에 저장된 값 출력
+            Name = authState.User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value;
+            Job = authState.User.Claims.FirstOrDefault(c => c.Type == "Job").Value;
         }
     }
 

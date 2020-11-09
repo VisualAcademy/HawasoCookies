@@ -27,6 +27,11 @@ namespace Hawaso.Controllers
                     // 로그인 아이디 지정
                     new Claim(ClaimTypes.Email, email),
                     new Claim(ClaimTypes.Name, "박용준"), 
+
+                    //[!] 새로운 Claim 개체 추가 가능
+                    // https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
+                    new Claim("Job", "Programmer"),
+
                 };
 
                 var ci = new ClaimsIdentity(claims, 
